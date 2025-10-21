@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Command Generator - Download & Run (Windows)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Windows Download & Run Command Generator</h1>
+    <p class="note">Generates a cmd-compatible PowerShell command that downloads a file, verifies its SHA-256, asks for consent, then runs it.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Input</h2>
+      <div class="field">
+        <label for="fileUrl">File URL</label>
+        <input id="fileUrl" type="url" placeholder="https://example.com/file.exe" required />
+      </div>
+      <div class="field">
+        <label for="fileName">Save as (filename)</label>
+        <input id="fileName" type="text" placeholder="file.exe" />
+      </div>
+      <div class="field row">
+        <div class="col">
+          <label for="sha256">Expected SHA-256</label>
+          <input id="sha256" type="text" placeholder="(optional, 64 hex chars)" />
+        </div>
+        <div class="col">
+          <label for="localFileForHash">Or compute hash from local file</label>
+          <input id="localFileForHash" type="file" />
+        </div>
+      </div>
+      <div class="field">
+        <label><input id="addArgs" type="checkbox" /> Add arguments to the executable</label>
+        <input id="execArgs" type="text" placeholder="--help or /S or other" disabled />
+      </div>
+      <div class="actions">
+        <button id="genBtn">Generate Command</button>
+        <button id="copyBtn" disabled>Copy</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Generated Command</h2>
+      <pre id="output" class="output" tabindex="0" aria-live="polite"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Notes</h2>
+      <ul>
+        <li>This generates a single cmd-friendly PowerShell line.</li>
+        <li>It validates SHA-256 if provided or computed.</li>
+        <li>It prompts the user before running the downloaded file.</li>
+        <li>You can paste it into <code>cmd.exe</code> or PowerShell.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <small>Use responsibly. Only run software from trusted sources.</small>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
